@@ -4,7 +4,7 @@ import streamlit as st
 from tickets_module import generar_ticket, ver_tickets
 from tutorials_module import ver_tutoriales
 from cybersecurity_module import analisis_ciberseguridad
-from projects_module import procesos_proyectos
+from project_processes_module import procesos_proyectos
 
 st.sidebar.title("Smart Support AI 🚀")
 
