@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Importando módulos
+# Importando módulos directamente (porque están en la raíz)
 from tickets_module import generar_ticket, ver_tickets
 from tutorials_module import ver_tutoriales
 from cybersecurity_module import analisis_ciberseguridad
@@ -13,59 +13,60 @@ from multisheets_module import mostrar_upgrades_multisheets
 # Configuración de la página
 st.set_page_config(page_title="Smart Support – Sistema de Tickets", layout="wide")
 
-# ============================
+# =========================================
 # HEADER PRINCIPAL
-# ============================
-st.title("🎟️ Smart Support – Sistema de Tickets")
+# =========================================
+st.title("🛠️ Smart Support – Sistema de Tickets")
 st.subheader("Tu Asistente de Seguridad y Soporte Post-Implementación")
 
-# ============================
+# =========================================
 # MENÚ PRINCIPAL
-# ============================
-opciones = [
-    "Seleccionar",
-    "Generar Ticket",
-    "Ver Tickets",
-    "Ver Tutoriales",
-    "Análisis de Ciberseguridad",
-    "Procesos de Proyectos",
-    "Dashboard de Estadísticas",
-    "Análisis IA de Tickets",
-    "Gestión de Upgrades",
-    "Upgrades desde Google Sheets"
-]
+# =========================================
+menu = st.sidebar.selectbox(
+    "Selecciona una opción",
+    (
+        "Inicio",
+        "Generar Ticket",
+        "Ver Tickets",
+        "Tutoriales",
+        "Ciberseguridad",
+        "Procesos de Proyectos",
+        "Dashboard de Estadísticas",
+        "Análisis IA de Tickets",
+        "Gestión de Upgrades",
+        "MultiSheets Upgrades"
+    )
+)
 
-opcion = st.selectbox("🎯 Selecciona un módulo:", opciones)
+# =========================================
+# LÓGICA DEL MENÚ
+# =========================================
+if menu == "Inicio":
+    st.write("Bienvenido al sistema de soporte Smart Support AI.")
 
-# ============================
-# LÓGICA DE NAVEGACIÓN
-# ============================
-if opcion == "Generar Ticket":
+elif menu == "Generar Ticket":
     generar_ticket()
 
-elif opcion == "Ver Tickets":
+elif menu == "Ver Tickets":
     ver_tickets()
 
-elif opcion == "Ver Tutoriales":
+elif menu == "Tutoriales":
     ver_tutoriales()
 
-elif opcion == "Análisis de Ciberseguridad":
+elif menu == "Ciberseguridad":
     analisis_ciberseguridad()
 
-elif opcion == "Procesos de Proyectos":
+elif menu == "Procesos de Proyectos":
     procesos_proyectos()
 
-elif opcion == "Dashboard de Estadísticas":
+elif menu == "Dashboard de Estadísticas":
     dashboard_estadisticas()
 
-elif opcion == "Análisis IA de Tickets":
+elif menu == "Análisis IA de Tickets":
     analisis_ia_tickets()
 
-elif opcion == "Gestión de Upgrades":
+elif menu == "Gestión de Upgrades":
     gestion_upgrades()
 
-elif opcion == "Upgrades desde Google Sheets":
+elif menu == "MultiSheets Upgrades":
     mostrar_upgrades_multisheets()
-
-else:
-    st.info("Por favor, selecciona una opción en el menú para comenzar.")
