@@ -1,12 +1,15 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 import streamlit as st
 from tickets_module import generar_ticket, ver_tickets
-from tutorials_module import ver_tutoriales
+from multisheets_module import mostrar_upgrades_multisheets
+from upgrades_module import gestion_upgrades
 from cybersecurity_module import analisis_ciberseguridad
 from project_processes_module import procesos_proyectos
 from statistics_dashboard_module import dashboard_estadisticas
 from ia_module import analisis_ia_tickets
-from upgrades_module import gestion_upgrades
-from multisheets_module import mostrar_upgrades_multisheets
 
 st.set_page_config(page_title="Smart Support - Sistema de Tickets", layout="wide")
 
@@ -44,7 +47,7 @@ elif opcion == "Ver Tickets":
     ver_tickets()
 
 elif opcion == "Ver Tutoriales":
-    ver_tutoriales()
+    st.info("Módulo en construcción...")
 
 elif opcion == "Análisis de Ciberseguridad":
     analisis_ciberseguridad()

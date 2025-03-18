@@ -1,45 +1,34 @@
 import streamlit as st
 import pandas as pd
 
-# Aquí simulamos una base de datos temporal con pandas (podrías conectar a una base real)
-tickets = []
+# Datos de prueba de tickets
+tickets = [
+    {"ID": 1, "Título": "Error de red", "Estado": "Abierto"},
+    {"ID": 2, "Título": "Falla de disco", "Estado": "En progreso"}
+]
 
 def generar_ticket():
-    st.subheader("🎫 Generar Nuevo Ticket")
+    st.subheader("📝 Generar Nuevo Ticket")
+    titulo = st.text_input("Título del ticket")
+    descripcion = st.text_area("Descripción del problema")
 
-    # Formulario para crear el ticket
-    with st.form("ticket_form"):
-        nombre = st.text_input("Nombre del solicitante")
-        email = st.text_input("Email de contacto")
-        prioridad = st.selectbox("Prioridad", ["Baja", "Media", "Alta", "Crítica"])
-        descripcion = st.text_area("Descripción del problema")
-        
-        submit = st.form_submit_button("Crear Ticket")
-
-        if submit:
-            nuevo_ticket = {
-                "Nombre": nombre,
-                "Email": email,
-                "Prioridad": prioridad,
-                "Descripción": descripcion
-            }
-            # Guardar ticket en la lista temporal
-            tickets.append(nuevo_ticket)
-            st.success("✅ Ticket creado con éxito")
-            st.write("Resumen del ticket creado:", nuevo_ticket)
-
+    if st.button("Crear Ticket"):
+        nuevo_ticket = {
+            "ID": len(tickets) + 1,
+            "Título": titulo,
+            "Estado": "Abierto"
+        }
+        tickets.append(nuevo_ticket)
+        st.success(f"✅ Ticket '{titulo}' creado exitosamente!")
 
 def ver_tickets():
-    st.subheader("📄 Ver Tickets Existentes")
+    st.subheader("📋 Lista de Tickets")
+    df_tickets = pd.DataFrame(tickets)
 
-    # Si hay tickets, los muestra
-    if tickets:
-        df_tickets = pd.DataFrame(tickets)
+    if not df_tickets.empty:
         st.dataframe(df_tickets)
-
-        # Exportar como CSV
         st.download_button(
-            label="📥 Descargar Tickets en CSV",
+            label="⬇️ Descargar Tickets en CSV",
             data=df_tickets.to_csv(index=False).encode('utf-8'),
             file_name='tickets.csv',
             mime='text/csv'

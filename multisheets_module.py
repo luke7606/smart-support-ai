@@ -20,7 +20,7 @@ def obtener_datos_sheet(sheet_url):
     try:
         client = authenticate_gspread()
         sheet = client.open_by_url(sheet_url)
-        worksheet = sheet.sheet1  # podés agregar para elegir otras hojas
+        worksheet = sheet.sheet1
         data = worksheet.get_all_records()
         df = pd.DataFrame(data)
         return df
