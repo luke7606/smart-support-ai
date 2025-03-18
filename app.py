@@ -1,74 +1,37 @@
 import streamlit as st
 
-# Importando módulos directamente (porque están en la raíz)
+# Importando módulos directamente
 from tickets_module import generar_ticket, ver_tickets
 from tutorials_module import ver_tutoriales
 from cybersecurity_module import analisis_ciberseguridad
-from project_processes_module import procesos_proyectos
-from statistics_dashboard_module import dashboard_estadisticas
-from ia_module import analisis_ia_tickets
-from upgrades_module import gestion_upgrades
-from multisheets_module import mostrar_upgrades_multisheets
+from projects_module import procesos_proyectos
 
-# =========================================
-# Configuración de la página
-# =========================================
-st.set_page_config(page_title="Smart Support – Sistema de Tickets", layout="wide")
+st.sidebar.title("Smart Support AI 🚀")
 
-# =========================================
-# HEADER PRINCIPAL
-# =========================================
-st.title("🛠️ Smart Support – Sistema de Tickets")
-st.subheader("Tu Asistente de Seguridad y Soporte Post-Implementación")
-
-# =========================================
-# MENÚ PRINCIPAL
-# =========================================
-menu = st.sidebar.selectbox(
-    "Selecciona una opción",
+opcion = st.sidebar.radio(
+    "Selecciona una opción:",
     (
-        "Inicio",
-        "Generar Ticket",
-        "Ver Tickets",
-        "Tutoriales",
-        "Ciberseguridad",
-        "Procesos de Proyectos",
-        "Dashboard de Estadísticas",
-        "Análisis IA de Tickets",
-        "Gestión de Upgrades",
-        "MultiSheets Upgrades"
+        "🏠 Inicio",
+        "🎫 Gestión de Tickets",
+        "📖 Tutoriales",
+        "🔒 Análisis de Ciberseguridad",
+        "📂 Procesos de Proyectos"
     )
 )
 
-# =========================================
-# LÓGICA DEL MENÚ
-# =========================================
-if menu == "Inicio":
-    st.write("Bienvenido al sistema de soporte Smart Support AI.")
+if opcion == "🏠 Inicio":
+    st.title("Bienvenido a Smart Support AI")
+    st.write("Selecciona una opción del menú para comenzar.")
 
-elif menu == "Generar Ticket":
+elif opcion == "🎫 Gestión de Tickets":
     generar_ticket()
-
-elif menu == "Ver Tickets":
     ver_tickets()
 
-elif menu == "Tutoriales":
+elif opcion == "📖 Tutoriales":
     ver_tutoriales()
 
-elif menu == "Ciberseguridad":
+elif opcion == "🔒 Análisis de Ciberseguridad":
     analisis_ciberseguridad()
 
-elif menu == "Procesos de Proyectos":
+elif opcion == "📂 Procesos de Proyectos":
     procesos_proyectos()
-
-elif menu == "Dashboard de Estadísticas":
-    dashboard_estadisticas()
-
-elif menu == "Análisis IA de Tickets":
-    analisis_ia_tickets()
-
-elif menu == "Gestión de Upgrades":
-    gestion_upgrades()
-
-elif menu == "MultiSheets Upgrades":
-    mostrar_upgrades_multisheets()
