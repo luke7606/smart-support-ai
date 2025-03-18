@@ -10,7 +10,9 @@ from ia_module import analisis_ia_tickets
 from upgrades_module import gestion_upgrades
 from multisheets_module import mostrar_upgrades_multisheets
 
+# =========================================
 # Configuración de la página
+# =========================================
 st.set_page_config(page_title="Smart Support – Sistema de Tickets", layout="wide")
 
 # =========================================
