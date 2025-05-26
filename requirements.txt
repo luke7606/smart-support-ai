@@ -1,9 +1,6 @@
 streamlit
 pandas
 numpy
-scikit-learn==1.3.2
-joblib
-sqlalchemy
-gspread
-requests
-oauth2client
+scikit-learn
+openai
+
